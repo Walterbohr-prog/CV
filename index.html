@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loïc Ponsot - Technicien Supérieur Informatique, Réseaux &amp; Cloud</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            900: '#0c4a6e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a; /* Slate 900 for modern tech dark background */
+            color: #f1f5f9;
+        }
+        .slide-container {
+            display: none;
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+        .slide-container.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0ea5e9;
+        }
+
+        /* PRINT STYLESHEET: Dynamically converts the interactive web page into a gorgeous, clean, paper-friendly PDF resume */
+        @media print {
+            body {
+                background-color: #ffffff !important;
+                color: #1e293b !important;
+                font-size: 11pt !important;
+                line-height: 1.4 !important;
+            }
+            header, footer, nav, .no-print, #print-btn {
+                display: none !important;
+            }
+            .slide-container {
+                display: block !important; /* Force all slides to be visible on printed page */
+                opacity: 1 !important;
+                transform: none !important;
+                page-break-inside: avoid;
+                margin-bottom: 2.5rem !important;
+                border: none !important;
+                box-shadow: none !important;
+            }
+            .slide-container > h2 {
+                color: #0284c7 !important;
+                border-bottom: 2px solid #e2e8f0 !important;
+                padding-bottom: 0.5rem !important;
+                margin-top: 1.5rem !important;
+                font-size: 16pt !important;
+                page-break-after: avoid;
+            }
+            .grid {
+                display: block !important; /* Fallback to block to prevent layout breaks on printers */
+            }
+            /* Style adjustements for nested items to look stunning in print mode */
+            .bg-slate-800, .bg-slate-900, .bg-slate-800\/50, .bg-slate-900\/60, .bg-slate-800\/40, .bg-gradient-to-br {
+                background: #f8fafc !important;
+                color: #334155 !important;
+                border: 1px solid #e2e8f0 !important;
+                box-shadow: none !important;
+                page-break-inside: avoid;
+                margin-bottom: 1rem !important;
+            }
+            h1, h2, h3, h4, strong {
+                color: #0f172a !important;
+            }
+            a {
+                color: #334155 !important;
+                text-decoration: underline !important;
+            }
+            /* Keep columns organized nicely in simple print blocks */
+            li, p {
+                color: #475569 !important;
+            }
+            th {
+                background-color: #f1f5f9 !important;
+                color: #0f172a !important;
+            }
+            td {
+                border-bottom: 1px solid #e2e8f0 !important;
+                color: #475569 !important;
+            }
+            /* Printable custom top-banner header to identify candidate on print */
+            .print-only-header {
+                display: block !important;
+                margin-bottom: 2rem;
+                border-bottom: 4px solid #0284c7;
+                padding-bottom: 1rem;
+            }
+        }
+        .print-only-header {
+            display: none;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+
+    <!-- Print Only Header Element (Invisible in browser, perfectly formatted in PDF export) -->
+    <div class="print-only-header">
+        <div style="float: right; text-align: right; font-size: 10pt;">
+            <p><strong>Email :</strong> c.dorneaz@hotmail.fr</p>
+            <p><strong>Tél :</strong> 06 71 83 57 58</p>
+            <p><strong>Adresse :</strong> Mareuil-sur-Lay-Dissais (85)</p>
+            <p><strong>Site web :</strong> www.walter-bohr.com</p>
+        </div>
+        <h1 style="font-size: 26pt; font-weight: 800; margin: 0; color: #0f172a;">PONSOT LOÏC</h1>
+        <p style="font-size: 14pt; color: #0284c7; font-weight: 600; margin: 5px 0 0 0;">Technicien Supérieur Informatique, Réseaux &amp; Cloud</p>
+        <p style="font-size: 10pt; color: #64748b; font-style: italic; margin-top: 5px;">"Assurer l'efficacité opérationnelle et le maintien en condition opérationnelle (MCO) de vos infrastructures."</p>
+        <div style="clear: both;"></div>
+    </div>
+
+    <!-- Top Header / Identity Area -->
+    <header class="bg-slate-800 border-b border-slate-700 py-6 px-4 md:px-8 shadow-lg">
+        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row justify-between items-center gap-6">
+            <div class="text-center lg:text-left">
+                <div class="flex items-center justify-center lg:justify-start gap-3 mb-2 flex-wrap">
+                    <span class="bg-brand-500 text-slate-900 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Disponibilité Immédiate</span>
+                    <span class="bg-emerald-500/20 text-emerald-400 text-xs font-semibold px-2.5 py-1 rounded-full border border-emerald-500/30">N2 / N3 à consolider</span>
+                </div>
+                <h1 class="text-3xl md:text-4xl font-extrabold text-white tracking-tight">PONSOT LOÏC</h1>
+                <p class="text-brand-500 font-semibold text-lg mt-1 tracking-wide">Technicien Supérieur Informatique, Réseaux &amp; Cloud</p>
+                <p class="text-slate-400 text-sm mt-2 max-w-xl italic mx-auto lg:mx-0">
+                    "Assurer l'efficacité opérationnelle et le maintien en condition opérationnelle (MCO) de vos infrastructures."
+                </p>
+            </div>
+            
+            <!-- Quick Contact info grid -->
+            <div class="flex flex-col sm:flex-row lg:flex-col xl:flex-row gap-4 items-center w-full lg:w-auto">
+                <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-700/60 grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm w-full lg:max-w-md">
+                    <a href="tel:0671835758" class="flex items-center gap-2.5 hover:text-brand-500 transition-colors">
+                        <span class="w-8 h-8 rounded-lg bg-brand-500/10 flex items-center justify-center text-brand-500"><i class="fa-solid fa-phone"></i></span>
+                        <span>06 71 83 57 58</span>
+                    </a>
+                    <a href="mailto:c.dorneaz@hotmail.fr" class="flex items-center gap-2.5 hover:text-brand-500 transition-colors">
+                        <span class="w-8 h-8 rounded-lg bg-brand-500/10 flex items-center justify-center text-brand-500"><i class="fa-solid fa-envelope"></i></span>
+                        <span class="truncate">c.dorneaz@hotmail.fr</span>
+                    </a>
+                    <div class="flex items-center gap-2.5">
+                        <span class="w-8 h-8 rounded-lg bg-brand-500/10 flex items-center justify-center text-brand-500"><i class="fa-solid fa-location-dot"></i></span>
+                        <span>Mareuil-sur-Lay-Dissais (85)</span>
+                    </div>
+                    <div class="flex items-center gap-2.5">
+                        <span class="w-8 h-8 rounded-lg bg-brand-500/10 flex items-center justify-center text-brand-500"><i class="fa-solid fa-id-card"></i></span>
+                        <span>Permis B &amp; Véhiculé</span>
+                    </div>
+                </div>
+
+                <!-- Print Trigger Action Button -->
+                <button onclick="window.print()" id="print-btn" class="bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-sm py-3 px-5 rounded-xl shadow-lg transition-all duration-200 flex items-center gap-2 w-full sm:w-auto justify-center">
+                    <i class="fa-solid fa-file-pdf"></i> Imprimer / Enregistrer PDF
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Slide Navigation Tabs -->
+    <nav class="bg-slate-900 border-b border-slate-800 sticky top-0 z-50 px-2 py-3 overflow-x-auto">
+        <div class="max-w-7xl mx-auto flex justify-start lg:justify-center gap-2">
+            <button onclick="switchSlide(1)" id="btn-slide1" class="nav-btn px-4 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 flex items-center gap-2 shrink-0 bg-brand-600 text-white shadow-md shadow-brand-500/20">
+                <i class="fa-solid fa-user-gear"></i> Vue Synthétique
+            </button>
+            <button onclick="switchSlide(2)" id="btn-slide2" class="nav-btn px-4 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 flex items-center gap-2 shrink-0 text-slate-400 hover:bg-slate-800 hover:text-slate-200">
+                <i class="fa-solid fa-layer-group"></i> Matrice de Compétences
+            </button>
+            <button onclick="switchSlide(3)" id="btn-slide3" class="nav-btn px-4 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 flex items-center gap-2 shrink-0 text-slate-400 hover:bg-slate-800 hover:text-slate-200">
+                <i class="fa-solid fa-briefcase"></i> Expériences Clés
+            </button>
+            <button onclick="switchSlide(4)" id="btn-slide4" class="nav-btn px-4 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 flex items-center gap-2 shrink-0 text-slate-400 hover:bg-slate-800 hover:text-slate-200">
+                <i class="fa-solid fa-clock-rotate-left"></i> Historique &amp; Formations
+            </button>
+            <button onclick="switchSlide(5)" id="btn-slide5" class="nav-btn px-4 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 flex items-center gap-2 shrink-0 text-slate-400 hover:bg-slate-800 hover:text-slate-200">
+                <i class="fa-solid fa-shield-halved"></i> Pourquoi me Recruter ?
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Dynamic Content Container -->
+    <main class="max-w-7xl mx-auto p-4 md:p-8 w-full flex-grow">
+
+        <!-- SLIDE 1: Vue Synthétique -->
+        <div id="slide1" class="slide-container active space-y-8">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Highlight Column Left: Core Strengths -->
+                <div class="lg:col-span-2 space-y-6">
+                    <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700/70 shadow-xl">
+                        <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-2.5">
+                            <i class="fa-solid fa-circle-nodes text-brand-500"></i> Profil Technico-Fonctionnel N2/N3
+                        </h2>
+                        <p class="text-slate-300 leading-relaxed mb-4 text-justify">
+                            Fort d'un parcours diversifié débuté dans la relation client d'excellence et la supervision d'infrastructures critiques (supervision monétique chez AVEM / support Orange), j'ai consolidé de solides compétences d'administration système, réseau et cloud lors de mes dernières années d'exercice pro.
+                        </p>
+                        <p class="text-slate-300 leading-relaxed text-justify">
+                            Chez <strong class="text-white">Aloa Informatique</strong>, je combine de l'administration cloud poussée (sécurité M365, gestion de centaines d'approbations de tenants via Partner Center, solutions de sécurité et sauvegarde ex : Hornetsecurity) avec une forte présence opérationnelle en dépannage de haut niveau, en atelier de micro-électronique et sur le terrain. 
+                        </p>
+                    </div>
+
+                    <!-- Highlight Badges Matrix -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="bg-slate-800/50 p-4 rounded-xl border border-slate-700/50 text-center">
+                            <span class="block text-2xl mb-1 text-brand-500 font-extrabold">100+</span>
+                            <span class="text-xs text-slate-400 font-semibold uppercase">Tenants M365 managés</span>
+                        </div>
+                        <div class="bg-slate-800/50 p-4 rounded-xl border border-slate-700/50 text-center">
+                            <span class="block text-2xl mb-1 text-brand-500 font-extrabold">Centrex</span>
+                            <span class="text-xs text-slate-400 font-semibold uppercase">Archi téléphonie OVH</span>
+                        </div>
+                        <div class="bg-slate-800/50 p-4 rounded-xl border border-slate-700/50 text-center">
+                            <span class="block text-2xl mb-1 text-brand-500 font-extrabold">Bilingue</span>
+                            <span class="text-xs text-slate-400 font-semibold uppercase">Anglais fluide &amp; technique</span>
+                        </div>
+                        <div class="bg-slate-800/50 p-4 rounded-xl border border-slate-700/50 text-center">
+                            <span class="block text-2xl mb-1 text-brand-500 font-extrabold">100%</span>
+                            <span class="text-xs text-slate-400 font-semibold uppercase">Autonome &amp; Équipé</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Highlight Column Right: Soft Skills and Lab Tools -->
+                <div class="space-y-6">
+                    <div class="bg-gradient-to-br from-slate-800 to-slate-900 p-6 rounded-2xl border border-slate-700/80 shadow-xl relative overflow-hidden">
+                        <div class="absolute -right-12 -top-12 text-slate-700/20 text-9xl pointer-events-none">
+                            <i class="fa-solid fa-microchip"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                            <i class="fa-solid fa-toolbox text-amber-500"></i> Équipement &amp; Labo Perso
+                        </h3>
+                        <ul class="space-y-3.5 text-sm text-slate-300">
+                            <li class="flex items-start gap-2.5">
+                                <i class="fa-solid fa-shield-halved text-brand-500 mt-1"></i>
+                                <span><strong>Clé IODD Mini Hardware :</strong> Montage d'ISO isolés en lecture seule, garantissant un environnement zéro-contamination chez le client.</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <i class="fa-solid fa-server text-brand-500 mt-1"></i>
+                                <span><strong>Boot VHDX d'environnement :</strong> Disque virtuel embarquant ma propre suite logicielle d'analyse, d'audit et de dépannage avancée.</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <i class="fa-solid fa-circle-info text-amber-400 mt-1"></i>
+                                <span><strong>Pédagogie d'intervention :</strong> Capacité éprouvée à calmer les conflits et rassurer les clients exigeants (ex-études de Psycho).</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 2: Matrice de Compétences -->
+        <div id="slide2" class="slide-container space-y-6">
+            <h2 class="text-2xl font-bold text-white flex items-center gap-2">
+                <i class="fa-solid fa-layer-group text-brand-500"></i> Matrice des Compétences &amp; Technologies Maitrisées
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Administration Cloud & Identités -->
+                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700/60 shadow-lg">
+                    <h3 class="text-lg font-bold text-white border-b border-slate-700 pb-3 mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-cloud-arrow-up text-brand-500"></i> Admin Cloud &amp; Identités
+                    </h3>
+                    <ul class="space-y-3 text-sm text-slate-300">
+                        <li><strong>Microsoft 365 :</strong> Tenant Config, SharePoint, OneDrive, Microsoft Teams, Suite Exchange Online.</li>
+                        <li><strong>Identité &amp; Accès :</strong> Microsoft Entra ID (Azure AD), Inscription de domaines, Déploiements automatisés de postes.</li>
+                        <li><strong>Gestion Multi-parc :</strong> Microsoft Partner Center (Gestion de relations d'approbation GDAP sur plus de 100 domaines clients).</li>
+                    </ul>
+                </div>
+
+                <!-- Sécurité & Sauvegardes -->
+                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700/60 shadow-lg">
+                    <h3 class="text-lg font-bold text-white border-b border-slate-700 pb-3 mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-shield-halved text-emerald-500"></i> Sécurité &amp; Sauvegardes
+                    </h3>
+                    <ul class="space-y-3 text-sm text-slate-300">
+                        <li><strong>Sécurité d'Accès :</strong> Déploiement de MFA Passwordless, création de politiques d'accès conditionnel et d'exclusion avancées.</li>
+                        <li><strong>Filtrage &amp; Protection :</strong> Utilisation de la console Hornetsecurity (anti-spam domain-wide et sécurisation de messagerie).</li>
+                        <li><strong>Sauvegarde (Backup) :</strong> Veeam Backup, Iperius Backup (sur environnements virtualisés Hyper-V et machines virtuelles).</li>
+                        <li><strong>Sauvegarde M365 :</strong> Sauvegardes de Tenants via Hornetsecurity Cloud &amp; NAS compatibles de sauvegarde locale.</li>
+                    </ul>
+                </div>
+
+                <!-- Téléphonie & Réseaux -->
+                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700/60 shadow-lg">
+                    <h3 class="text-lg font-bold text-white border-b border-slate-700 pb-3 mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-network-wired text-cyan-500"></i> Téléphonie &amp; Réseaux
+                    </h3>
+                    <ul class="space-y-3 text-sm text-slate-300">
+                        <li><strong>Architectures Centrex :</strong> Spécialiste de la solution VoIP OVH Centrex (abonnements, pré-paramétrage, installation, gestion des flux téléphoniques clients).</li>
+                        <li><strong>Téléphonie Physique/Mobile :</strong> Standard Téléphonique IPBX, téléphones IP, flotte mobile d'entreprise Android &amp; iOS.</li>
+                        <li><strong>Réseaux Actifs :</strong> Configuration et routage LAN/WAN, modems, routeurs, switchs managés, pares-feux, VPNs IPSec/SSL, bornes Wi-Fi.</li>
+                    </ul>
+                </div>
+
+                <!-- Diagnostic, Atelier & Maintenance -->
+                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700/60 shadow-lg">
+                    <h3 class="text-lg font-bold text-white border-b border-slate-700 pb-3 mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-laptop-medical text-amber-500"></i> Diagnostic &amp; Atelier
+                    </h3>
+                    <ul class="space-y-3 text-sm text-slate-300">
+                        <li><strong>Dépannage Matériel (Atelier) :</strong> Démontage complexe en laboratoire de matériel informatique (PC portables, tablettes, téléphones).</li>
+                        <li><strong>Assemblage sur mesure :</strong> Montage à la pièce et configuration de serveurs et PC haut de gamme personnalisés.</li>
+                        <li><strong>Méthodologie Sécurisée :</strong> Diagnostic via IODD Mini physique (anti-infection USB) et environnements VHDX amovibles dédiés.</li>
+                    </ul>
+                </div>
+
+                <!-- Méthodologie & Gouvernance -->
+                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700/60 shadow-lg">
+                    <h3 class="text-lg font-bold text-white border-b border-slate-700 pb-3 mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-sitemap text-indigo-500"></i> Gouvernance &amp; Méthodes
+                    </h3>
+                    <ul class="space-y-3 text-sm text-slate-300">
+                        <li><strong>Knowledge Management :</strong> Cartographie systématique des installations clients (photos de baies de brassage annotées, repérage logique, schémas de topologie réseau).</li>
+                        <li><strong>Documentation SI :</strong> Création de référentiels d'accès sécurisés au format structuré (adressage IP, WAN/LAN, matériels managés, clés de sécurité, sessions).</li>
+                        <li><strong>Supervision :</strong> Monitoring de parc d'infrastructures en temps réel avec analyse de récurrences d'incidents complexes (KPI ITIL).</li>
+                    </ul>
+                </div>
+
+                <!-- Langues & Soft Skills -->
+                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700/60 shadow-lg">
+                    <h3 class="text-lg font-bold text-white border-b border-slate-700 pb-3 mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-users-gear text-pink-500"></i> Relations &amp; Langues
+                    </h3>
+                    <ul class="space-y-3 text-sm text-slate-300">
+                        <li><strong>Anglais :</strong> Bilingue fluide (adapté aux supports d'éditeurs anglophones internationaux et à la documentation technique complexe).</li>
+                        <li><strong>Gestion Clientèle VIP / Pro :</strong> Forte empathie, pédagogie accrue lors des pannes critiques, résistance confirmée au stress lors des situations de conflits.</li>
+                        <li><strong>Autres langues :</strong> Notions d'Italien et de Japonais.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- SLIDE 3: Expériences Clés -->
+        <div id="slide3" class="slide-container space-y-8">
+            <h2 class="text-2xl font-bold text-white flex items-center gap-2">
+                <i class="fa-solid fa-briefcase text-brand-500"></i> Parcours Professionnel &amp; Réalisations Majeures
+            </h2>
+
+            <div class="space-y-6">
+
+                <!-- EXPERIENCE: ALOA INFORMATIQUE (Current) -->
+                <div class="bg-slate-800 rounded-2xl border-l-4 border-brand-500 p-6 md:p-8 shadow-xl relative overflow-hidden">
+                    <span class="absolute top-4 right-4 bg-brand-500/10 text-brand-400 text-xs font-semibold px-3 py-1 rounded-full border border-brand-500/25">Poste Actuel</span>
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-white">Technicien Support &amp; Administrateur Cloud N2/N3</h3>
+                            <p class="text-brand-400 font-medium">ALOA Informatique</p>
+                        </div>
+                        <span class="text-slate-400 text-sm font-semibold bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-700/50 self-start md:self-center">Depuis Septembre 2023</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 text-sm text-slate-300">
+                        <div class="lg:col-span-2 space-y-4">
+                            <p class="italic text-slate-400">
+                                Consolidation d'un poste d'administrateur cloud M365 et expert réseaux au sein d'une structure gérant des parcs clients professionnels très diversifiés.
+                            </p>
+                            <ul class="space-y-2.5 list-disc pl-5">
+                                <li><strong>Administration Microsoft 365 avancée :</strong> Configuration complète de tenants, gestion des boites mails, sécurité Defender, liaison de domaines et gestion fine d'Entra ID (Azure AD).</li>
+                                <li><strong>Supervision du parc clients :</strong> Déploiement et sécurisation du Partner Center de Microsoft en relation d'approbation GDAP sur plus d'une centaine de domaines clients distincts.</li>
+                                <li><strong>Cybersécurité opérationnelle :</strong> Mise en place de stratégies de MFA Passwordless avec création de politiques d'exclusions de sécurité et procédures d'intégration d'identité. Utilisation des solutions Hornetsecurity (anti-spam, protection complète).</li>
+                                <li><strong>Stratégie de sauvegarde :</strong> Administration de serveurs de sauvegarde Veeam et Iperius Backup sur environnements Hyper-V et Machines Virtuelles (VM). Gestion de la sauvegarde locale M365 sur NAS compatibles.</li>
+                                <li><strong>Gestion du système Télécoms :</strong> Administration complète de l'architecture de téléphonie Centrex OVH (abonnements clients, pré-paramétrage en labo et installation sur site).</li>
+                                <li><strong>Activités Labo &amp; Terrain :</strong> Montage de PC ultra-personnalisés, réparations complexes en atelier (PC, ordinateurs portables, tablettes, smartphones) en tant que centre agréé TERRA Wortmann. Déplacements réguliers pour audits et déploiements d'infrastructures physiques.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-slate-900/50 p-4 rounded-xl border border-slate-700/60 h-fit space-y-3">
+                            <h4 class="text-white font-bold text-xs uppercase tracking-wider border-b border-slate-800 pb-2"><i class="fa-solid fa-cube text-brand-500"></i> Stack Technologique</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-slate-800 text-slate-200 text-xs px-2 py-1 rounded">Microsoft 365</span>
+                                <span class="bg-slate-800 text-slate-200 text-xs px-2 py-1 rounded">Entra ID</span>
+                                <span class="bg-slate-800 text-slate-200 text-xs px-2 py-1 rounded">GDAP Partner Center</span>
+                                <span class="bg-slate-800 text-slate-200 text-xs px-2 py-1 rounded">MFA Passwordless</span>
+                                <span class="bg-slate-800 text-slate-200 text-xs px-2 py-1 rounded">Veeam Backup</span>
+                                <span class="bg-slate-800 text-slate-200 text-xs px-2 py-1 rounded">Iperius Backup</span>
+                                <span class="bg-slate-800 text-slate-200 text-xs px-2 py-1 rounded">Hyper-V</span>
+                                <span class="bg-slate-800 text-slate-200 text-xs px-2 py-1 rounded">Hornetsecurity</span>
+                                <span class="bg-slate-800 text-slate-200 text-xs px-2 py-1 rounded">OVH Centrex</span>
+                                <span class="bg-slate-800 text-slate-200 text-xs px-2 py-1 rounded">Sauvegarde NAS</span>
+                                <span class="bg-slate-800 text-slate-200 text-xs px-2 py-1 rounded">TERRA Wortmann</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EXPERIENCE: SOLUTIONS.COM -->
+                <div class="bg-slate-800 rounded-2xl border-l-4 border-blue-400 p-6 md:p-8 shadow-xl">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-white">Technicien Helpdesk Informatique, Réseaux &amp; Télécoms (N1/N2)</h3>
+                            <p class="text-blue-400 font-medium">Solutions.com</p>
+                        </div>
+                        <span class="text-slate-400 text-sm font-semibold bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-700/50 self-start md:self-center">Septembre 2020 – Septembre 2023</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 text-sm text-slate-300">
+                        <div class="lg:col-span-2 space-y-4">
+                            <p class="italic text-slate-400">
+                                Support technique, administration et ingénierie de premier niveau pour un large portefeuille de PME et d'acteurs professionnels exigeants.
+                            </p>
+                            <ul class="space-y-2.5 list-disc pl-5">
+                                <li><strong>Support multi-environnements :</strong> Hotline d'assistance de niveau 1 &amp; 2, diagnostic d'incidents de messagerie, de droits d'accès, d'environnement Windows (10/11) et serveurs (Win Server 2019).</li>
+                                <li><strong>Configuration Réseau &amp; Télécoms :</strong> Installation, déploiement et maintenance à distance ou sur site de modems, routeurs, switchs managés, pares-feux, liaisons VPN sécurisées, bornes Wi-Fi et infrastructures de téléphonie IPBX / standards téléphoniques.</li>
+                                <li><strong>Méthodologie innovante de Référencement :</strong> Création de cartographies de parcs visuelles et de fiches d'accès de sécurité centralisées (adresses IP LAN/WAN, configurations VPN, baies de brassage annotées avec photographies des armoires techniques) permettant aux collaborateurs de dépanner immédiatement à distance sans avoir à se déplacer.</li>
+                                <li><strong>Logistique active de parc :</strong> Réception et envoi de matériel, masterisation de postes bureautiques, gestion des approvisionnements de stocks, dispatch et préparation d'interventions terrain.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-slate-900/50 p-4 rounded-xl border border-slate-700/60 h-fit space-y-3">
+                            <h4 class="text-white font-bold text-xs uppercase tracking-wider border-b border-slate-800 pb-2"><i class="fa-solid fa-cube text-blue-400"></i> Stack Technologique</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-slate-800 text-slate-200 text-xs px-2 py-1 rounded">Windows Server 2019</span>
+                                <span class="bg-slate-800 text-slate-200 text-xs px-2 py-1 rounded">Routage WAN/LAN</span>
+                                <span class="bg-slate-800 text-slate-200 text-xs px-2 py-1 rounded">VPN IPsec/SSL</span>
+                                <span class="bg-slate-800 text-slate-200 text-xs px-2 py-1 rounded">Bornes WiFi</span>
+                                <span class="bg-slate-800 text-slate-200 text-xs px-2 py-1 rounded">IPBX / VoIP</span>
+                                <span class="bg-slate-800 text-slate-200 text-xs px-2 py-1 rounded">Active Directory</span>
+                                <span class="bg-slate-800 text-slate-200 text-xs px-2 py-1 rounded">Outils de ticketing</span>
+                                <span class="bg-slate-800 text-slate-200 text-xs px-2 py-1 rounded">Cartographie de Parc</span>
+                                <span class="bg-slate-800 text-slate-200 text-xs px-2 py-1 rounded">Mastering</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EXPERIENCE: AVEM -->
+                <div class="bg-slate-800 rounded-2xl border-l-4 border-slate-500 p-6 md:p-8 shadow-xl">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-white">Technicien Automates Bancaires</h3>
+                            <p class="text-slate-400 font-medium">AVEM (Groupe Crédit Agricole)</p>
+                        </div>
+                        <span class="text-slate-400 text-sm font-semibold bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-700/50 self-start md:self-center">2018 – 2019</span>
+                    </div>
+                    <ul class="space-y-2.5 list-disc pl-5 text-sm text-slate-300">
+                        <li><strong>Supervision critique en temps réel :</strong> Monitoring du parc complet d'automates du Crédit Agricole (France métropolitaine et départements d'outre-mer) via des logiciels dédiés sous haute contrainte SLA.</li>
+                        <li><strong>Diagnostic d'incidents complexes :</strong> Diagnostic matériel et logiciel, et résolution à distance de dysfonctionnements d'automates bancaires de niveau 2.</li>
+                        <li><strong>Support &amp; Dispatch :</strong> Suivi des tickets d'incidents majeurs, planification et routage intelligent des interventions techniques de niveau 3 sur le terrain avec suivi opérationnel des techniciens en déplacement.</li>
+                    </ul>
+                </div>
+
+                <!-- EXPERIENCE: ORANGE -->
+                <div class="bg-slate-800 rounded-2xl border-l-4 border-orange-500 p-6 md:p-8 shadow-xl">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-white">Conseiller Technique &amp; Dépannage (Alternance CQPT)</h3>
+                            <p class="text-orange-400 font-medium">Orange France / Cabinet CAA</p>
+                        </div>
+                        <span class="text-slate-400 text-sm font-semibold bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-700/50 self-start md:self-center">2016 – 2017</span>
+                    </div>
+                    <ul class="space-y-2.5 list-disc pl-5 text-sm text-slate-300">
+                        <li><strong>Diagnostic réseaux d'accès :</strong> Traitement d'appels entrants pour la clientèle de particuliers Orange. Diagnostic des boucles locales ADSL/Fibre et assistance matérielle (Livebox, décodeurs TV).</li>
+                        <li><strong>Gestion de la relation client :</strong> Formation d'excellence via cabinet CAA sur la gestion de crises, la résolution de conflits au téléphone et l'adaptation à des profils d'utilisateurs variés.</li>
+                        <li><strong>Fidélisation &amp; Escalades :</strong> Diagnostic, escalade des pannes d'infrastructure complexes auprès du support niveau 3 et fidélisation de la clientèle.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- SLIDE 4: Historique de Parcours & Formations -->
+        <div id="slide4" class="slide-container space-y-8">
+            <h2 class="text-2xl font-bold text-white flex items-center gap-2">
+                <i class="fa-solid fa-clock-rotate-left text-brand-500"></i> Historique Global &amp; Formations
+            </h2>
+
+            <div class="bg-slate-800 rounded-2xl p-6 border border-slate-700/70 shadow-xl overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="border-b border-slate-700 text-brand-400 text-xs uppercase tracking-wider">
+                                <th class="py-4 px-4 font-semibold">Période</th>
+                                <th class="py-4 px-4 font-semibold">Poste / Certificats d'études</th>
+                                <th class="py-4 px-4 font-semibold">Structure d'accueil</th>
+                                <th class="py-4 px-4 font-semibold">Compétences d'expérience consolidées</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-700/40 text-sm text-slate-300">
+                            <!-- ALOA -->
+                            <tr class="hover:bg-slate-700/20 transition-colors">
+                                <td class="py-4 px-4 font-bold text-white">2023 - 2026</td>
+                                <td class="py-4 px-4">Technicien Support &amp; Administrateur Cloud N2/N3</td>
+                                <td class="py-4 px-4">ALOA Informatique</td>
+                                <td class="py-4 px-4 text-slate-400">Admin Microsoft 365, Partner Center GDAP, MFA, Backup (Veeam/Iperius), Console Hornetsecurity, VoIP OVH Centrex, Labo &amp; Assemblage.</td>
+                            </tr>
+                            <!-- Solutions.com -->
+                            <tr class="hover:bg-slate-700/20 transition-colors">
+                                <td class="py-4 px-4 font-bold text-white">2020 - 2023</td>
+                                <td class="py-4 px-4">Technicien Helpdesk Informatique, Réseaux &amp; Télécoms (N1/N2)</td>
+                                <td class="py-4 px-4">Solutions.com</td>
+                                <td class="py-4 px-4 text-slate-400">Windows Server, Routage LAN/WAN, VPN, WiFi, IPBX, Support N1/N2, Cartographie et Documentation visuelle client.</td>
+                            </tr>
+                            <!-- AVEM -->
+                            <tr class="hover:bg-slate-700/20 transition-colors">
+                                <td class="py-4 px-4 font-bold text-slate-400">2018 - 2019</td>
+                                <td class="py-4 px-4">Technicien Automates Bancaires</td>
+                                <td class="py-4 px-4">AVEM (Crédit Agricole)</td>
+                                <td class="py-4 px-4 text-slate-400">Supervision en temps réel d'un parc sous haute contrainte d'urgence, routage d'intervention N3, gestion d'incidents.</td>
+                            </tr>
+                            <!-- ORANGE -->
+                            <tr class="hover:bg-slate-700/20 transition-colors">
+                                <td class="py-4 px-4 font-bold text-slate-400">2016 - 2017</td>
+                                <td class="py-4 px-4">Conseiller Technique &amp; Dépannage (CQPT)</td>
+                                <td class="py-4 px-4">Orange France</td>
+                                <td class="py-4 px-4 text-slate-400">Diagnostic de la boucle locale, gestion de conflits d'utilisateurs, apprentissage de la communication client.</td>
+                            </tr>
+                            <!-- PSYCHO -->
+                            <tr class="hover:bg-slate-700/20 transition-colors">
+                                <td class="py-4 px-4 font-bold text-slate-500">2010 - 2015</td>
+                                <td class="py-4 px-4">Études de Psychologie et d'Anglais</td>
+                                <td class="py-4 px-4">Université d'Aix en provence </td>
+                                <td class="py-4 px-4 text-slate-400">Comportements humains, méthodologies d'écoute active, maîtrise bilingue de l'Anglais écrit &amp; oral.</td>
+                            </tr>
+                            <!-- BAC -->
+                            <tr class="hover:bg-slate-700/20 transition-colors">
+                                <td class="py-4 px-4 font-bold text-slate-500">2010</td>
+                                <td class="py-4 px-4">Baccalauréat Littéraire (Option Anglais / Arts Plastiques)</td>
+                                <td class="py-4 px-4">Lycée Marseilleveyre</td>
+                                <td class="py-4 px-4 text-slate-400">Écriture, logique d'analyse et créativité artistique (dessin d'observation).</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 5: Pourquoi me Recruter ? -->
+        <div id="slide5" class="slide-container space-y-8">
+            <h2 class="text-2xl font-bold text-white flex items-center gap-2">
+                <i class="fa-solid fa-shield-halved text-brand-500"></i> Pourquoi Me Recruter ? Valeur Ajoutée d'un Profil N2/N3 Autonome
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-slate-300">
+                <!-- Card 1: Technical Autonomy -->
+                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700/60 shadow-lg relative overflow-hidden">
+                    <span class="text-5xl text-slate-700/10 absolute right-4 bottom-4 pointer-events-none"><i class="fa-solid fa-screwdriver-wrench"></i></span>
+                    <h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-check-double text-brand-500"></i> Autonomie et "Lab" de Diagnostic Privé
+                    </h3>
+                    <p class="text-sm leading-relaxed text-justify mb-4">
+                        Je ne me repose pas uniquement sur les solutions tierces de l'entreprise. En disposant de mes propres outils d'intervention blindés en lecture seule (comme ma clé <strong>IODD Mini</strong> embarquant des <strong>VHDX d'analyse configurées par mes soins</strong>), je m'assure de l'intégrité de mes dépannages, de la décontamination de matériels et de la protection des systèmes hôtes.
+                    </p>
+                    <p class="text-sm leading-relaxed text-justify">
+                        Ma double casquette d'atelier (réparations de niveau micro-électronique) et de terrain me permet d'aborder des pannes complexes de l'infrastructure globale jusqu'au composant électronique d'une tablette.
+                    </p>
+                </div>
+
+                <!-- Card 2: Knowledge Management -->
+                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700/60 shadow-lg relative overflow-hidden">
+                    <span class="text-5xl text-slate-700/10 absolute right-4 bottom-4 pointer-events-none"><i class="fa-solid fa-folder-open"></i></span>
+                    <h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-network-wired text-brand-500"></i> Esprit de Documentation &amp; "Zéro Perte de Temps"
+                    </h3>
+                    <p class="text-sm leading-relaxed text-justify mb-4">
+                        Je ne conçois pas de résolution de pannes sans archivage ni cartographie pour l'équipe. C'est l'essence même de mon action : documenter visuellement, annoter des photographies de baies de brassage physiques, schématiser les plans d'adressage IP (LAN/WAN) et recenser de manière extrêmement sécurisée les configurations de routage et VPN de chaque client.
+                    </p>
+                    <p class="text-sm leading-relaxed text-justify">
+                        Cette discipline permet à n'importe quel collègue de support d'intervenir à distance avec une vue claire des infrastructures, réduisant de fait le temps de résolution et améliorant le taux de satisfaction utilisateur (First Contact Resolution).
+                    </p>
+                </div>
+            </div>
+
+            <!-- Interpersonal profile panel -->
+            <div class="bg-slate-800/40 p-6 rounded-xl border border-slate-700/50">
+                <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                    <i class="fa-solid fa-comments text-amber-500"></i> Le sens du service au-delà de la technique
+                </h3>
+                <p class="text-sm text-slate-300 leading-relaxed text-justify">
+                    Grâce à mon parcours initial en psychologie et mes formations poussées en relation d'affaires (parcours d'excellence Orange / AVEM Crédit Agricole), j'ai acquis une grande finesse dans la prise en charge de crises. Face à une panne critique ou un client en colère, je sais vulgariser la solution technique sans condescendance, apaiser la situation et rassurer l'utilisateur VIP, en français comme en anglais.
+                </p>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer / Nav Controls -->
+    <footer class="bg-slate-900 border-t border-slate-800 py-6 px-4 text-center text-slate-500 text-xs">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <p>© 2026 - Portfolio Professionnel Interactif de Loïc Ponsot. Hébergé avec succès sur <a href="http://walter-bohr.com" class="text-brand-500 hover:underline">walter-bohr.com</a></p>
+            <div class="flex items-center gap-4 text-slate-400">
+                <span><i class="fa-solid fa-code text-brand-500"></i> Code source optimisé pour la production</span>
+                <span>|</span>
+                <span>Version 3.5 (N2/N3 consolidé)</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Logic Script -->
+    <script>
+        function switchSlide(slideNumber) {
+            // Hide all slides
+            const slides = document.querySelectorAll('.slide-container');
+            slides.forEach(slide => {
+                slide.classList.remove('active');
+            });
+
+            // Display target slide
+            const targetSlide = document.getElementById('slide' + slideNumber);
+            if (targetSlide) {
+                targetSlide.classList.add('active');
+            }
+
+            // Update Navigation Button styles
+            const navButtons = document.querySelectorAll('.nav-btn');
+            navButtons.forEach(btn => {
+                btn.className = "nav-btn px-4 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 flex items-center gap-2 shrink-0 text-slate-400 hover:bg-slate-800 hover:text-slate-200";
+            });
+
+            // Highlight Active Button
+            const activeButton = document.getElementById('btn-slide' + slideNumber);
+            if (activeButton) {
+                activeButton.className = "nav-btn px-4 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 flex items-center gap-2 shrink-0 bg-brand-600 text-white shadow-md shadow-brand-500/20";
+            }
+
+            // Sync currentSlide variable with the action
+            currentSlide = slideNumber;
+
+            // Auto-scroll page to top of navigation bar upon click for mobile users comfort
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Swipe alternative touch support for sliding panel navigation on smartphones
+        let touchstartX = 0;
+        let touchendX = 0;
+        let currentSlide = 1;
+        const totalSlides = 5;
+
+        function checkDirection() {
+            if (touchendX < touchstartX - 70) {
+                // Swipe Left -> Next Slide
+                if (currentSlide < totalSlides) {
+                    currentSlide++;
+                    switchSlide(currentSlide);
+                }
+            }
+            if (touchendX > touchstartX + 70) {
+                // Swipe Right -> Previous Slide
+                if (currentSlide > 1) {
+                    currentSlide--;
+                    switchSlide(currentSlide);
+                }
+            }
+        }
+
+        document.addEventListener('touchstart', e => {
+            touchstartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', e => {
+            touchendX = e.changedTouches[0].screenX;
+            checkDirection();
+        });
+    </script>
+</body>
+</html>
