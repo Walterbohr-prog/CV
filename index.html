@@ -219,6 +219,9 @@
             <button onclick="switchSlide(5)" id="btn-slide5" class="nav-btn px-4 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 flex items-center gap-2 shrink-0 text-slate-400 hover:bg-slate-800 hover:text-slate-200">
                 <i class="fa-solid fa-shield-halved"></i> Pourquoi me Recruter ?
             </button>
+           <button onclick="switchSlide(6)" id="btn-slide6" class="nav-btn px-4 py-2.5 rounded-lg text-sm font-semibold flex items-center gap-2 transition-all hover:bg-slate-800">
+    <i class="fa-solid fa-code-branch"></i> Ce Projet
+           </button>
         </div>
     </nav>
 
@@ -648,6 +651,22 @@
                 </p>
             </div>
         </div>
+        <div id="slide6" class="slide-container hidden p-6">
+    <h2 class="text-2xl font-bold mb-6 text-white">Infrastructure & DevOp</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-slate-800 p-5 rounded-xl border border-slate-700">
+            <h3 class="font-bold mb-2 text-blue-400">Architecture Cloud</h3>
+            <p class="text-sm text-slate-300">Hébergement <strong>GitHub Pages</strong> avec routage DNS <strong>Cloudflare</strong> pour une sécurité et une performance optimales.</p>
+        </div>
+        <div class="bg-slate-800 p-5 rounded-xl border border-slate-700">
+            <h3 class="font-bold mb-2 text-blue-400">Sécurité & SSL</h3>
+            <p class="text-sm text-slate-300">Mise en place de <strong>SSL/TLS Full (Strict)</strong>, masquage IP via proxy inversé et durcissement via records <strong>SPF/DKIM/DMARC</strong>.</p>
+        </div>
+        <div class="bg-slate-800 p-5 rounded-xl border border-slate-700">
+            <h3 class="font-bold mb-2 text-blue-400">Messagerie Pro</h3>
+            <p class="text-sm text-slate-300">Architecture de routage d'e-mails (<code>contact@walter-bohr.com</code>) assurant la délivrabilité professionnelle.</p>
+        </div>
+    </div>
 
     </main>
 
@@ -658,7 +677,7 @@
             <div class="flex items-center gap-4 text-slate-400">
                 <span><i class="fa-solid fa-code text-brand-500"></i> Code source optimisé pour la production</span>
                 <span>|</span>
-                <span>Version 3.5 (N2/N3 consolidé)</span>
+                <span>Version 3.5 (N2/N3 à consolider)</span>
             </div>
         </div>
     </footer>
